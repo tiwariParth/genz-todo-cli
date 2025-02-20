@@ -58,7 +58,7 @@ func addTodo(description string) {
         ID:          nextID,
         Description: description,
         Completed:   false,
-        CreatedAt:   time.Now(),
+        CreatedAt:   time.Now().UTC(),
     }
     todos = append(todos, todo)
     nextID++
@@ -87,11 +87,11 @@ func completeTodo(id int) {
             todos[i].Completed = true
             saveTodos()
             fmt.Printf("🌟 Completed: %s\n", todo.Description)
-            
+
             // Update streak
             loadStreak()
             updateStreak()
-            
+
             return
         }
     }
@@ -136,7 +136,7 @@ func saveStreak() {
 }
 
 func updateStreak() {
-    now := time.Now()
+    now := time.Now().UTC()
     if now.Day() != streak.LastCheck.Day() {
         if now.Sub(streak.LastCheck).Hours() < 48 {
             streak.Count++
@@ -149,12 +149,17 @@ func updateStreak() {
     }
 }
 
+func showStreak() {
+    loadStreak()
+    fmt.Printf("🔥 Current Streak: %d days\n", streak.Count)
+}
+
 func main() {
     loadTodos()
     loadStreak()
 
     if len(os.Args) < 2 {
-        fmt.Println("Usage: genz-todo [add|list|complete|delete] [args]")
+        fmt.Println("Usage: genz-todo [add|list|complete|delete|streak] [args]")
         return
     }
 
@@ -184,8 +189,10 @@ func main() {
         }
         id := parseInt(os.Args[2])
         deleteTodo(id)
+    case "streak":
+        showStreak()
     default:
-        fmt.Println("Unknown command. Use 'add', 'list', 'complete', or 'delete'.")
+        fmt.Println("Unknown command. Use 'add', 'list', 'complete', 'delete', or 'streak'.")
     }
 }
 
