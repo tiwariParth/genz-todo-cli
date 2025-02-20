@@ -1,4 +1,3 @@
-/*
 Steps to run this project locally:
 
 1. Clone the repository:
@@ -27,4 +26,3 @@ Steps to run this project locally:
      ```
 
 6. Follow the CLI prompts to use the TODO application.
-*/
