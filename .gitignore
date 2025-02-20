@@ -1,0 +1,52 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Compiled Go files
+*.a
+*.out
+
+# Temporary files
+*.tmp
+*.log
+*.lock
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependency directories (optional, depending on your workflow)
+vendor/
+
+# Local environment files
+.env
+*.env
+*.local
+
+# Build artifacts
+genz-todo
+genz-todo.exe
+genz-todo-linux
+genz-todo-macos
+genz-todo-windows
+
+# Data files (if you don't want to commit todos.json or streak.json)
+todos.json
+streak.json
+
+# Go build cache
+**/go-build/
+.cache/
+bin/
+pkg/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Test coverage files
+coverage.out
